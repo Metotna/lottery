@@ -1,0 +1,47 @@
+<ion-view view-title="我的优惠券" hide-nav-bar="true">
+    <ion-header-bar class="bar-background Soccerhall-har">
+        <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="backGo()"><i></i></a>
+        <span style="margin-left: 1.3rem;position: relative;">我的优惠券</span>
+        <div class="Soccerhall-har-right">
+            <a class="icon iconfont icon-shouyeshouye funnel home" ng-click="Gohome()"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content class="contentBG">
+        <ion-refresher pulling-text="下拉刷新" refreshing-text="数据正在加载中..." on-refresh="bomdoPost()"></ion-refresher>
+        <div class="mycouponlist" ng-if="list">
+            <section class="couponbox" ng-class="{ true: 'lapse', false: ''}[l.status != 0]" ng-click="godetaail(l,$index)" ng-repeat="l in list">
+                <div class="box-coupons">
+                    <div class="l-coupons" ng-class="{ 0: 'L0',1: 'L1', 2: 'L2',3: 'L3',4: 'L4',}[coustyle(l.type,l.status)]">
+                        <div class="c-l-aa">
+                            <div class="c-l-a">
+                                <div class="c-l-a1">{{l.type_value}}<font>元</font></div>
+                                <div class="c-l-a2">{{l.type_name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="r-coupons">
+                        <div class="c-l-bb">
+                            <div class="c-l-b">
+                                <div class="c-l-b1">{{l.type|mycoutype}}<span class="c-l-ba lapseTrue">{{l.aname}}</span></div>
+                                <div class="c-l-b2">有效期：{{l.stime|limitTo:10}}至{{l.etime|limitTo:10}}</div>
+                            </div>
+                            <div class="Watermark" ng-class="{ 1: 'USED', 2: 'XSE'}[l.status]"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="no-couponwd" ng-if="bgimg">
+            <img src="img/coupons/Oval2.png">
+            <p>暂无优惠券！</p>
+        </div>
+
+
+       <!-- <ion-infinite-scroll on-infinite="loadParticulars()" distance="1%" ng-if="goods_load_over" immediate-check="false"></ion-infinite-scroll>-->
+    </ion-content>
+    <!--    <ion-footer-bar class="detaillist-foot">
+            <div class="detaillist-foot-butt">
+                继续投注竞彩足球
+            </div>
+        </ion-footer-bar>-->
+</ion-view>

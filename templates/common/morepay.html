@@ -1,0 +1,97 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-background Soccerhall-har">
+        <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="closeModal()"><i></i></a>
+        <span style="margin-left: 1.3rem;position: relative;">大额充值</span>
+        <div class="Soccerhall-har-right">
+
+        </div>
+    </ion-header-bar>
+    <ion-content class="contentBG">
+        <div>
+            <!--<div class="moremoney">
+                <input type="number" name="paymoney" ng-model="wd.money" placeholder="请输入充值金额">
+            </div>-->
+            <div class="login-tab-con carbox">
+                <h4 style="margin-bottom: .2rem;color: #F05244;">单次充值≥1000元，需使用银行卡转账</h4>
+                <h4>请转账至以下银行账户</h4>
+              <!--  <input id="foo"  value="http://www.968309.com/mobile.php">
+                <button class="btn" data-clipboard-target="#foo">复制</button>-->
+                <div class="carlist">
+                    <div class="" ng-repeat="l in carlist track by $index">
+                        <p>姓名:{{l.name}}</p>
+                        <p>卡号:{{l.cardno|banknum}}</p>
+                        <p>银行:{{l.bank}}</p>
+                    </div>
+                   <!-- <label class="moreitem item-radio" ng-repeat="l in carlist track by $index">
+                        <input type="radio" name="group" ng-value="l.cardno" ng-model="wd.cardno">
+                        <div class="radio-content">
+                            <div class="item-content caritem">
+                                <div class="l_selectbank"><img src='../img/bank.svg' ng-src="{{l.bank|bankimg}}"></div>
+                                <div class="r_selectbank">
+                                    <div class="banktype">{{l.bank}}<font>储蓄卡</font></div>
+                                    <div class="banknum">{{l.cardno}}</div>
+                                </div>
+                            </div>
+                            <span class="caryuan"></span>
+                            <i class="radio-icon icon iconfont icon-dot"></i>
+                        </div>
+                    </label>-->
+                </div>
+                <div class="paymoneys">
+                    <p class="payselect">请选择充值金额</p>
+                    <ul>
+                        <li ng-repeat="m in moneys"><span ng-class="{g: '','{{m}}': 'ott-img'}[moneyType]" data-active={{m}} ng-click="getmoneys($event)">{{m}}元</span></li>
+                    </ul>
+                </div>
+                <div  style="padding: 0;width: 92%;margin: .8rem auto .2rem;">
+                    <div class="walletpaycon" ng-click="vipcharge()">确认充值</div>
+                </div>
+                <div class="explain">
+                    <h5>说明：</h5>
+                    <p>
+                        1. 大额充值金额必须≥1000元。
+                    </p>
+                    <p>
+                        2.充值金额后四位为当前账户绑定的手机号后四位。
+                    </p>
+                    <p>
+                        3.客服收到转账款项后会第一时间和您电话联系确认，为方便转账识别，请严格按照所选金额进行转账。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </ion-content>
+    <div class="modulebankBOX" ng-if="popshow">
+        <div class="modulebank">
+            <div class="poptit">
+                <h5>温馨提示</h5>
+            </div>
+            <div class="morepaypop">
+                <div class="paycon-a">
+                    <h2>金额:{{totalmoney}}元</h2>
+                    <h2>姓名:{{bankinfo.name}}</h2>
+                    <div class="paycon-b">
+                        <div class="paycon-l">
+                            <font>卡号:</font>
+                            <div class="inputbox">
+                                <input class="carinp" id="foo" ng-value="bankinfo.cardno" >
+                                <input class="carp" ng-value="bankinfo.cardno|banknum" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="btn paycon-r" data-clipboard-target="#foo">复制</div>
+                    </div>
+                    <h2>银行:{{bankinfo.bank}}</h2>
+                </div>
+            </div>
+            <div class="payfoot">
+                <div class="poptext">
+                    *转账金额必须一致
+                </div>
+                <div  style="padding: 0;width: 92%;margin: .34rem auto .2rem;">
+                    <div class="walletpaycon" ng-click="close()">确认</div>
+                </div>
+        </div>
+            </div>
+            </div>
+</ion-modal-view>

@@ -1,0 +1,33 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar class="bar-background Soccerhall-har">
+    <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="backGo()" cancel-betting><i></i></a>
+    <span style="margin-left: 1.3rem;position: relative;">订单确认</span>
+    <!--<div class="Soccerhall-har-right">
+            <a class="icon iconfont icon-shouyeshouye funnel home" ng-click="Gohome()"></a>
+        </div>-->
+  </ion-header-bar>
+  <ion-content class="contentBG wallet" id="paymentnew">
+    <div id="confirmationnew" class="confirmation" style="background: #fff" prevent-default>
+      <section>
+        <!--<div class="itemlist title">订单确认<span class="close" ng-click="CloseConfirmation()" cancel-betting></span></div>-->
+        <pay-Monney></pay-Monney>
+        <pay-Type ng-if="Transactiondata.chargemoney!=0"></pay-Type>
+        <div class="buttom" confirm-payguide style="bottom: 0;">确认付款</div>
+      </section>
+      <section>
+        <pay-Coupon></pay-Coupon>
+      </section>
+    </div>
+  </ion-content>
+  <!-- 遮罩 -->
+    <div class="xsyd_zf">
+        <div class="xsyd_zf_parta"></div>
+        <div class="xsyd_zf_partb">
+            <div></div>
+        </div>
+        <div class="xsyd_zf_partc">
+            <img src="imgxsyd/pay.png" alt="" width="100%">
+            <div ng-click="goguidec()">确认付款</div>
+        </div>
+    </div>
+</ion-view>

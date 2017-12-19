@@ -1,0 +1,62 @@
+<ion-view hide-nav-bar="true">
+    <ion-header-bar class="bar-background Soccerhall-har">
+        <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="backGo()"><i></i></a>
+        <span style="margin-left: 1.3rem;position: relative;">金币兑换</span>
+        <div class="Soccerhall-har-right">
+            <a class="icon iconfont icon-shouyeshouye funnel home" ng-click="Gohome()"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content class="contentBG">
+        <div class="user-tab-bar duihuanicon">
+            <a ng-class="{n: '', 1: 'user-tab-bar-cle'}[vle]" data-active="1" ng-click="changeTab($event)">现金<i class="ionic iconfont icon-jiantou2"></i>金币</a>
+            <a ng-class="{n: '', 2: 'user-tab-bar-cle'}[vle]" data-active="2" ng-click="changeTab($event)">金币<i class="ionic iconfont icon-jiantou2"></i>彩金</a>
+            <img src="img/Group5.png" ng-class="{1: 'utb-a',2: 'utb-b'}[vle]">
+        </div>
+        <div class="conversion-con">
+            <div class="Box-0" ng-if="vle==1">
+                <span>账户余额{{(userinfo.money-(-userinfo.vmoney))|number:2}}元</span>
+                <span>现金+彩金</span>
+            </div>
+            <div class="Box-0" ng-if="vle==2">
+                <span>金币余额{{userinfo.gcoin|number:2}}金币</span>
+                <span></span>
+            </div>
+            <div class="read-in">
+                <input ng-if="vle==1" name="mycount" type="number" ng-model="search.count" ng-value="search.count" placeholder="输入您想要兑换的金额" ng-change="changeInt()" maxlength="10">
+                <input ng-if="vle==2" name="mycount" type="number" ng-model="search.count" ng-value="search.count" placeholder="输入您想要兑换的金币数" ng-change="changeInt()" maxlength="10">
+            </div>
+            <div class="Box-1" ng-if="vle==1">
+                <span>* 本次兑换可获得 <font>{{search.count*exchange.CASHtoGCOIN||0}}</font> 金币</span>
+                <span ng-click="Alldollars()">全部兑换</span>
+            </div>
+            <div class="Box-1" ng-if="vle==2">
+                <span>* 本次兑换可获得 <font>{{(search.count*exchange.GCOINtoVCASH||0)|number:2}}</font> 彩金</span>
+                <span ng-click="Alldollars()">全部兑换</span>
+            </div>
+            <div class="Box-2" ng-click="doPost()">
+                确认兑换
+            </div>
+            <!--<div class="Box-3">
+                如何获取金币？
+            </div>-->
+            <div class="Box-4" ng-if="vle==1">
+                <p>说明：</p>
+                <p>1.兑换比例1元={{exchange.CASHtoGCOIN}}金币；</p>
+                <p>2.兑换金币时优先使用彩金兑换；</p>
+            </div>
+            <div class="Box-4" ng-if="vle==2">
+                <p>说明：</p>
+                <p>1.兑换比例为{{(1/exchange.GCOINtoVCASH)|number:0}}金币=1元；</p>
+                <p>2.金币兑换的彩金只能用来购彩，不能进行提现；</p>
+            </div>
+        </div>
+        <!--<div class="circle-dev">
+            <div class="circle-bg"></div>
+            <div class="circle-alt">
+                <div class="circle-alt-lft"></div>
+                <div class="circle-alt-rht"></div>
+            </div>
+            <div class="circle-min"></div>
+        </div>-->
+    </ion-content>
+</ion-view>

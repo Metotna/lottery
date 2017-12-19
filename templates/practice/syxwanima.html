@@ -1,0 +1,133 @@
+<ion-view view-title="十一选五" hide-nav-bar="true">
+  <ion-header-bar class="bar-background Soccerhall-har">
+    <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="gosyxw()"><i></i></a>
+    <span style="margin-left: 1.3rem;position: relative;">11选5开奖</span>
+    <div class="Soccerhall-har-right">
+      <!-- <a class="icon iconfont icon-jiagezoushi funnel" ng-click="goqxc(SYXWtype)"></a> -->
+      <!-- <a class="funnel dian" ng-click="assistant(0)"></a> -->
+    </div>
+  </ion-header-bar>
+  <div class="setBody">
+    <div class="sT_daojishi">
+      <div class='stdjs_text'>距
+        <font>{{nowpid}}期</font>开奖还有</div>
+      <div class="stdjs_img">
+        <img src="imgs/djs.png">
+        <span class='si_parta'>{{coutdown.min}}</span>
+        <span class='si_partb'>{{coutdown.sec}}</span>
+      </div>
+    </div>
+    <div class="sT_anima " style="height: 3.5rem">
+      <div class='stdjs_text' ng-if='endpart.text'>
+        <font>{{nowpid}}期</font> {{showtext}}</div>
+      <div class="stdjs_gza" id='stdjs_gza_ball' ng-show='endpart.num'>
+        <img src="imgs/prizeend_g.png" class='std_img' style="width: 5rem;height: 1.2rem;">
+        <img src="imgs/ball.png " class='std_balls' style="margin-left: .4rem">
+        <img src="imgs/ball.png " class='std_balls'>
+        <img src="imgs/ball.png " class='std_balls'>
+        <img src="imgs/ball.png " class='std_balls'>
+        <img src="imgs/ball.png " class='std_balls'>
+      </div>
+      <div class="stdjs_texts" ng-if='endwin.amoney*1>0' ng-show='endpart.num'>本期奖金总计：
+        <font>{{endwin.amoney}}元</font>
+      </div>
+    </div>
+    <div class="sT_text">{{aftercot.cot}}</div>
+  </div>
+  <ion-content has-bouncing="false" class="seven-cot  syo_body">
+    <div class="st_mynumber_a" ng-if='aftercot.flag'>
+      <li class="st_number st_num_end" ng-repeat='x in arrylist'>
+        <div class="syc_kaijiang" style="padding: 0 ;overflow: hidden;">
+          <span ng-repeat='y in x.codes.bets track by $index' ng-class="{true: '', false: 'syn_cm_pa_type'}[numstr(y)]"><font >{{y}}</font></span>
+        </div>
+        <div class="syn_cm_partb syc_kaijiang_partb">
+          <span>{{x.codes.play}}</span><span>{{x.bdouble+'倍'}}</span><span>{{'共'+x.money+'元'}}</span>
+          <span><font style="color: #f05244 !important;font-size: .28rem;font-weight: 700;"  ng-if='x.bounstotal.amoney>0 && winflag'>{{'奖金'+x.bounstotal.amoney*x.bdouble+'元'}}</font>
+          <font  ng-if='x.bounstotal.amoney<=0 && winflag'>未中奖</font>
+          </span>
+        </div>
+      </li>
+    </div>
+    <div class="st_mynumber_b st_number" ng-if='!aftercot.flag'>
+      <li class='list_title'>
+        <span style="width: 20%">期次</span><span style="width: 43%">开奖号码</span>
+        <span style="width: 17%">大小比</span><span style="width: 17%">奇偶比</span>
+      </li>
+      <li ng-repeat="x in listhistory | orderBy:x.pid :'desc'" ng-class-odd="'st_mynumber_b_span'">
+        <span style="width: 20%">{{x.pid.substring(4,10)}}</span><span style="width: 43%">
+        <font class='syn_ccot_font' ng-repeat="y in x.acode.split(',') track by $index" >{{y}}</font></span>
+        <span style="width: 17%">{{x.dx}}</span><span style="width: 17%">{{x.qo}}</span>
+      </li>
+    </div>
+  </ion-content>
+  <div class="ending_Show" ng-if='endingshow' style="margin-top: 0;">
+    <div id='st_anima' class="sT_anima st_anima_a" style="margin:2rem 0 " ng-if='endresult==0'>
+      <div class="sT_partb sT_part ">
+        <img src="imgs/001.png " class='stb_ia st_img'>
+        <img src="imgs/ready.png " class='stb_ic st_img'>
+        <img src="imgs/001-1.png " class='stb_ib st_img'>
+        <img src="imgs/ball.png " class='stc_ball stc_am'>
+      </div>
+      <div class="sT_partd sT_part ">
+        <img src="imgs/002.png " class='std_ia st_img'>
+        <img src="imgs/002-1.png " class='stb_ib st_img'>
+        <div class="ballpath ">
+          <img src="imgs/ball.png " class='balla ' id='balla'>
+          <img src="imgs/ball.png " class='ballb ' id='ballb'>
+          <img src="imgs/ball.png " class='ballc ' id='ballc'>
+          <img src="imgs/ball.png " class='balld ' id='balld'>
+          <img src="imgs/ball.png " class='balle ' id='balle'>
+        </div>
+      </div>
+      <div class="sT_parte sT_part ">
+        <img src="imgs/05.png " class='st_img'>
+      </div>
+    </div>
+    <div class="endshow_lost " ng-if='endresult==1'>
+      <img src="imgs/jianbbei.png ">
+      <span class='endshow_lost_span' style="color: #FFB707;margin-top: 0; ">恭喜您！</span>
+      <span class='endshow_lost_span' style="color: #ffffff;font-size: .38rem ">投注{{endwin.pid}}期中奖</span>
+      <span class='endshow_lost_span' style="color: #FFB707; ">中奖{{endwin.amoney}}元</span>
+      <div>
+        <span class='end_btn_c' style="float: left; " ng-click='closeendshow()'>关闭</span>
+        <span class='end_btn_c' style="float: right;background-image: linear-gradient(-180deg, #E71F3B 0%, #E71F3B 100%); " ng-click='gosyxw()'>继续投注</span>
+      </div>
+    </div>
+    <div class="endshow_lost " ng-if='endresult==2'>
+      <img src="imgs/nobet02.png ">
+      <span class='endshow_lost_span' style="color: #FFFFFF; ">您当期没有中奖</span>
+      <div>
+        <span class='end_btn_c' style="float: left; " ng-click='closeendshow()'>关闭</span>
+        <span class='end_btn_c' style="float: right;background-image: linear-gradient(-180deg, #E71F3B 0%, #E71F3B 100%); " ng-click='gosyxw()'>好运再投</span>
+      </div>
+    </div>
+    <div class="endshow_lost" ng-if='endresult==3'>
+      <img src="imgs/nobet.png">
+        <span class='endshow_lost_span' style="color: #FFFFFF;">您当期没有投注哦</span>
+        <div>
+          <span class='end_btn_c' style="background-image: linear-gradient(-180deg, #E71F3B 0%, #E71F3B 100%);width: 3.6rem;margin: 0 auto;" ng-click='gosyxw()'>试试手气</span>
+        </div>
+    </div>
+  </div>
+  <!--   <div class="assistant " ng-if="assistantShow " ng-click="assistant(0) ">
+    <ul>
+      <li ng-click="assistant(1) ">购奖记录</li>
+      <li ng-click="assistant(2) ">玩法介绍</li>
+      <li ng-click="assistant(3) ">开奖信息</li>
+    </ul>
+  </div> -->
+  <!--     <ion-footer-bar class="soccerhall-foots ">
+        <div class="sf-l-t " id="plsjxd " ng-if="plsjxd ">
+            <div ng-click="rdnums(1) ">1注</div>
+            <div ng-click="rdnums(5) ">5注</div>
+            <div ng-click="rdnums(10) " class="sf-l-ta ">10注</div>
+            <span></span>
+        </div>
+        <div class="sf-left " ng-click="deleteary() " ng-if="gamesession || dtma ">清除</div>
+        <div class="sf-left " ng-click="jixuan() " ng-if="!gamesession && !dtma ">机选</div>
+        <div class="sf-cot ">
+            <span>共{{gamesession}}注<span>{{2*gamesession}}元</span></span>
+        </div>
+        <div class="sf-right " ng-click="Confirm() ">确定</div>
+    </ion-footer-bar> 
+</ion-view>

@@ -1,0 +1,18 @@
+﻿{
+    "bannerurl": [{
+        "1": "practice.Soccerhall",//足球
+        "2": "practice.basketballhall",//篮球
+        "3": "practice.lottery-seven",//七星彩
+        "4": "practice.plshall",//排列三
+        "5": "practice.lottery-seven",//排列五
+        "6": "practice.lottery-super",//大乐透
+        "7": "practice.syxwhall",//江西十一选五
+        "8": "practice.syxwhall",//山东..
+        "9": "practice.syxwhall",//上海..
+        "10": "practice.syxwhall",//浙江
+        "11": "practice.lottery-super",//双色球
+        "12": "practice.lottery-super",//七乐彩
+        "13": "practice.plshall",//福彩3D
+        "101":"user.WalletPay"//充值入口
+    }]
+}

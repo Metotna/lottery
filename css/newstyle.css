@@ -1,0 +1,17 @@
+.c .syxw-tabbox .syxwtabtop01 {
+  border-style: solid;
+  border-color: #666;
+  background: red;
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 10px;
+  opacity: 8;
+  left: 5px;
+  justify-content: space-around;
+  -webkit-box-align: end;
+  align-items: end;
+  display: -webkit-box;
+  display: flex;
+  font-size: 10px; }

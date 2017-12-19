@@ -1,0 +1,31 @@
+<ion-view hide-nav-bar="true">
+    <ion-header-bar class="bar-background Soccerhall-har">
+        <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="backGo()"><i></i></a>
+        <span style="margin-left: 1.3rem;position: relative;">往期战绩</span>
+
+    </ion-header-bar>
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新" refreshing-text="数据正在加载中..." on-refresh="bomdoPost()"></ion-refresher>
+        <div class="record-box">
+            <div class="box-item" ng-repeat="l in list">
+                <div class="item-tit">
+                    <div class="tit-l">{{l.date|bztime}}</div>
+                    <div class="tit-r"><span class="sp1" ng-if="l.joined==1">已投</span><span class="sp1-1" ng-if="l.joined==0">未投</span>
+                        <span class="sp2">投注：{{l.betMoney}}元</span><span class="sp3">{{l.playMethod}}</span><span class="sp4">{{l.betDouble}}倍</span></div>
+                </div>
+                <div class="item-con">
+                    <div class="itemcon-h"><span>场次</span><span>对阵</span><span>大神投注</span></div>
+                    <div class="itemcon-p" ng-repeat="m in l.matches" ng-class="{true:'correct',false:''}[m.guessRight]"><span>{{m.name}}</span><span>{{m.homeTeam}} VS {{m.guestTeam}}</span><span class="bzguess">{{m.guess}}（{{m.rate}}）</span></div>
+                </div>
+                <div class="item-foot">
+                    {{l.showCount}}人参加活动
+                </div>
+                <div class="bzsealimg" ng-class="{1:'sealzj',0:'sealwzj'}[l.result]" ></div>
+            </div>
+        </div>
+        <div class="nodata" ng-if="!bgimg && !goods_load_over">
+            没有更多了
+        </div>
+        <ion-infinite-scroll on-infinite="loadParticulars()" distance="1%" ng-if="goods_load_over" immediate-check="false"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

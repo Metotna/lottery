@@ -1,0 +1,62 @@
+<ion-view view-title="我的优惠券" hide-nav-bar="true">
+    <ion-header-bar class="bar-background Soccerhall-har">
+        <a class="bar-backgo icon iconfont icon-jiantou1" ng-click="backGo()"><i></i></a>
+        <span style="margin-left: 1.3rem;position: relative;">我的优惠券</span>
+        <div class="Soccerhall-har-right">
+            <a class="icon iconfont icon-shouyeshouye funnel home" ng-click="Gohome()"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content class="contentBG">
+        <!--<ion-refresher pulling-text="下拉刷新" refreshing-text="数据正在加载中..." on-refresh="bomdoPost()"></ion-refresher>-->
+        <div class="coupondetails">
+            <section class="couponbox">
+                <div class="box-coupons">
+                    <div class="l-coupons">
+                        <div class="c-l-aa">
+                            <div class="c-l-a">
+                                <div class="c-l-a1">{{item.type_value}}<font>元</font></div>
+                                <div class="c-l-a2">{{item.type_name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="r-coupons">
+                        <div class="c-l-bb">
+                            <div class="c-l-b">
+                                <div class="c-l-b1">{{item.type|mycoutype}}<span class="c-l-ba lapseTrue">{{item.aname}}</span></div>
+                                <div class="c-l-b2">有效期：{{item.stime|limitTo:10}}至{{item.etime|limitTo:10}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!-- <div class="couline"><img src="img/coupons/coux.png"> </div>-->
+                <div class="instructions">
+                    <p ng-if="item.type == 3"><font>使用作用：</font>单笔订单满{{item.type_cfgvalue}}减{{item.type_value}}</p>
+                    <p ng-if="item.type === 2"><font>使用作用：</font>单笔订单立减{{item.type_value}}元</p>
+                    <p><font>使用方法：</font>选择以下彩种进行购彩</p>
+                    <p><font>使用时间：</font>{{item.stime|limitTo:10}}至{{item.etime|limitTo:10}}</p>
+                </div>
+                <div class="title">
+                    投注以下可享优惠
+                </div>
+                <div class="Optionallist">
+                    <ul>
+                        <li ng-repeat="t in item.lottery.split(',')" ng-click="golottery(t)">
+                            <div class="Optionabox">
+                                <div class="boxa">
+                                    <img src="img/{{t}}.png">
+                                    <span>{{t|lotteryname}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <!--<ion-infinite-scroll on-infinite="loadParticulars()" distance="1%" ng-if="goods_load_over" immediate-check="false"></ion-infinite-scroll>-->
+    </ion-content>
+    <!--    <ion-footer-bar class="detaillist-foot">
+            <div class="detaillist-foot-butt">
+                继续投注竞彩足球
+            </div>
+        </ion-footer-bar>-->
+</ion-view>
